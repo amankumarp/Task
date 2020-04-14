@@ -37,7 +37,7 @@ function distance(lat1,lon1,lat2,lon2){
     d=Math.acos( Math.sin(lat1*Math.PI/180)*Math.sin(lat2*Math.PI/180) + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.cos(lon2*Math.PI/180-lon1*Math.PI/180) ) * 6371000;
     return d/1000;
 }
-    var lat=26.8467088, log=80.9461592,arr=[];
+    var lat, log,arr=[];
     navigator.geolocation.getCurrentPosition(function (pos) {
      lat = pos.coords.latitude;
      log = pos.coords.longitude;
