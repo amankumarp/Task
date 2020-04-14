@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+shops=[
+    {
+    name:'shop_1',
+    item:['item_1','item_2','item_3'],
+    lat:26.8447784,
+    lon:80.343434
+},
+{
+    name:'shop_2',
+    item:['item_4','item_5','item_6'],
+    lat:25.572025,
+    lon:82.229542
+},
+{
+    name:'shop_3',
+    item:['item_7','item_8','item_9','item_10'],
+    lat:25.566258,
+    lon:82.166942
+}
+]
+
+function distance(lat1,lon1,lat2,lon2){
+    d=Math.acos( Math.sin(lat1*Math.PI/180)*Math.sin(lat2*Math.PI/180) + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.cos(lon2*Math.PI/180-lon1*Math.PI/180) ) * 6371000;
+    return d/1000;
+}
+    var lat=26.8467088, log=80.9461592,arr=[];
+    navigator.geolocation.getCurrentPosition(function (pos) {
+     lat = pos.coords.latitude;
+     log = pos.coords.longitude;
+       console.log("lat:"+lat+"long:"+log);
+    }, function (err) {
+         console.log("Error:", err.message);
+     });
+
+
+for(let i=0;i<shops.length;i++){
+arr.push(distance(shops[i].lat,shops[i].lon,lat,log))
+}
+var min=arr[0];
+for (i=0;i<=arr.length;i++){
+if(arr[i]<min){
+    min=arr[i]
+}
+}
+index=arr.indexOf(min);
+console.log(shops[index].item);
+</script>
+
+</html>
